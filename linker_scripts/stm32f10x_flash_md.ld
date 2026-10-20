@@ -19,6 +19,8 @@ SECTIONS
     *(.flashtext*)
     KEEP (*(.init))
     KEEP (*(.fini))
+    *(.ARM.extab*)
+    *(.ARM.exidx*)
     _etext = .;
     _sidata = .;
   } > FLASH
@@ -42,4 +44,6 @@ SECTIONS
     *(COMMON)
     _ebss = .;
   } > RAM
+  ASSERT(LOADADDR(.data) + SIZEOF(.data) <= ORIGIN(FLASH) + LENGTH(FLASH),
+         "FLASH overflowed by .data")
 }

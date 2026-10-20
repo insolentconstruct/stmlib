@@ -43,6 +43,8 @@ SECTIONS
     *(.glue_7t)
     KEEP (*(.init))
     KEEP (*(.fini))
+    *(.ARM.extab*)
+    *(.ARM.exidx*)
     
     . = ALIGN(4);
     __init_array_start = .;
@@ -97,4 +99,6 @@ SECTIONS
     libm.a ( * )
     libgcc.a ( * )
   }
+  ASSERT(LOADADDR(.data) + SIZEOF(.data) <= ORIGIN(FLASH) + LENGTH(FLASH),
+         "FLASH overflowed by .data")
 }

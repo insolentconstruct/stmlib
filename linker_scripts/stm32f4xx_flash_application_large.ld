@@ -44,6 +44,8 @@ SECTIONS
     *(.glue_7t)
     KEEP (*(.init))
     KEEP (*(.fini))
+    *(.ARM.extab*)
+    *(.ARM.exidx*)
     . = ALIGN(16);
      _etext = .;
      _sidata = _etext;
@@ -100,4 +102,6 @@ SECTIONS
     libm.a ( * )
     libgcc.a ( * )
   }
+  ASSERT(LOADADDR(.data) + SIZEOF(.data) <= ORIGIN(FLASH) + LENGTH(FLASH),
+         "FLASH overflowed by .data")
 }
