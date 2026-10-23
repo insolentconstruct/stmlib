@@ -411,7 +411,7 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_xPSR(void)
  */
 __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_PSP(void)
 {
-  register uint32_t result;
+  uint32_t result;
 
   __ASM volatile ("MRS %0, psp\n"  : "=r" (result) );
   return(result);
@@ -426,7 +426,7 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_PSP(void)
  */
 __attribute__( ( always_inline ) ) __STATIC_INLINE void __set_PSP(uint32_t topOfProcStack)
 {
-  __ASM volatile ("MSR psp, %0\n" : : "r" (topOfProcStack) : "sp");
+  __ASM volatile ("MSR psp, %0\n" : : "r" (topOfProcStack) : );
 }
 
 
@@ -438,7 +438,7 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE void __set_PSP(uint32_t topOf
  */
 __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_MSP(void)
 {
-  register uint32_t result;
+  uint32_t result;
 
   __ASM volatile ("MRS %0, msp\n" : "=r" (result) );
   return(result);
@@ -453,7 +453,7 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_MSP(void)
  */
 __attribute__( ( always_inline ) ) __STATIC_INLINE void __set_MSP(uint32_t topOfMainStack)
 {
-  __ASM volatile ("MSR msp, %0\n" : : "r" (topOfMainStack) : "sp");
+  __ASM volatile ("MSR msp, %0\n" : : "r" (topOfMainStack) : );
 }
 
 
